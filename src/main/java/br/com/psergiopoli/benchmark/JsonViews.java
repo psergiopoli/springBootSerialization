@@ -4,4 +4,5 @@ public class JsonViews {
     public static interface Public {}
     public static interface Private {}
     public static interface All extends Public, Private {}
+    public static interface DB extends Public, Private {}
 }
