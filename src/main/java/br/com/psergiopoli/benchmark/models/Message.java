@@ -1,4 +1,4 @@
-package br.com.psergiopoli.benchmark;
+package br.com.psergiopoli.benchmark.models;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.psergiopoli.benchmark.JsonViews;
 
 @XmlRootElement(name = "message")
 @Entity

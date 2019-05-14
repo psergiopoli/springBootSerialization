@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import br.com.psergiopoli.benchmark.Util.BuilderUtil;
+import br.com.psergiopoli.benchmark.models.Message;
+import br.com.psergiopoli.benchmark.repository.MessageRepository;
+
+
 @Component
 public class AppRunner implements CommandLineRunner {
 
@@ -23,7 +28,7 @@ public class AppRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         if(!this.messageRepository.findAll().iterator().hasNext()) {
-            Message message = Util.messageBuilder();
+            Message message = BuilderUtil.messageBuilder();
             message.setId(1L);
             this.messageRepository.save(message);
             logger.info("Message table was empty, creating a message on DB success");

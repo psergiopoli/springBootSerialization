@@ -1,9 +1,11 @@
-package br.com.psergiopoli.benchmark;
+package br.com.psergiopoli.benchmark.Util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Util {
+import br.com.psergiopoli.benchmark.models.Message;
+
+public class BuilderUtil {
 
     public static Message messageBuilder() {
         Message message = new Message();
