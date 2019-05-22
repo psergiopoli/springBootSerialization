@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.psergiopoli.benchmark.JsonViews;
 import br.com.psergiopoli.benchmark.Util.BuilderUtil;
 import br.com.psergiopoli.benchmark.models.Message;
-import br.com.psergiopoli.benchmark.repository.MessageRepository;
+import br.com.psergiopoli.benchmark.services.MessageService;
 
 @RestController
 public class HelloWorldController {
 
-    private MessageRepository messageRepository;
+    private MessageService messageService;
 
     @Autowired
-    public HelloWorldController(MessageRepository messageRepository){
-        this.messageRepository = messageRepository;
+    public HelloWorldController(MessageService messageService){
+        this.messageService = messageService;
     }
 
     @RequestMapping("/hello")
@@ -55,7 +55,7 @@ public class HelloWorldController {
     @RequestMapping("/hello/db/all")
     @JsonView(JsonViews.DB.class)
     public List<Message> getHelloMessageJSONDatabase() {
-        Iterable<Message> messages = this.messageRepository.findAll();
+        Iterable<Message> messages = this.messageService.findAll();
         List<Message> messagesList = new ArrayList<Message>();
 
         messages.forEach(messagesList::add);

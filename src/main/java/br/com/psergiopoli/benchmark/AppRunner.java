@@ -8,17 +8,17 @@ import org.springframework.stereotype.Component;
 
 import br.com.psergiopoli.benchmark.Util.BuilderUtil;
 import br.com.psergiopoli.benchmark.models.Message;
-import br.com.psergiopoli.benchmark.repository.MessageRepository;
+import br.com.psergiopoli.benchmark.services.MessageService;
 
 
 @Component
 public class AppRunner implements CommandLineRunner {
 
-    private MessageRepository messageRepository;
+    private MessageService messageService;
 
     @Autowired
-    public AppRunner(MessageRepository messageRepository){
-        this.messageRepository = messageRepository;
+    public AppRunner(MessageService messageService){
+        this.messageService = messageService;
     }
 
 
@@ -27,10 +27,10 @@ public class AppRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        if(!this.messageRepository.findAll().iterator().hasNext()) {
+        if(this.messageService.findAll().size() == 0) {
             Message message = BuilderUtil.messageBuilder();
             message.setId(1L);
-            this.messageRepository.save(message);
+            this.messageService.save(message);
             logger.info("Message table was empty, creating a message on DB success");
         } else {
             logger.info("Message already have elements, skiping creating message");

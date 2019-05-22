@@ -30,4 +30,5 @@ HELP.md
 .vscode/
 
 app.log
+app.log*
 bin/

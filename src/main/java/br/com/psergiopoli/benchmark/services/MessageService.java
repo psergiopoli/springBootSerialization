@@ -1,7 +1,11 @@
 package br.com.psergiopoli.benchmark.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import br.com.psergiopoli.benchmark.models.Message;
 import br.com.psergiopoli.benchmark.repository.MessageRepository;
 
 @Service
@@ -12,10 +16,17 @@ public class MessageService {
     public MessageService(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
     }
-    
-    // public Message saveMessage(Message message) {}
-    // public Iterable findAll() {}
+
+    public List<Message> findAll() {
+        Iterable<Message> messages = this.messageRepository.findAll();
+        List<Message> messagesList = new ArrayList<Message>();
+
+        messages.forEach(messagesList::add);
+        return messagesList;
+    }
+
+    public void save(Message message) {
+        this.messageRepository.save(message);
+    }
 
 }
-
-// TODO: Implement this instead using repository directly on controller and app runner
